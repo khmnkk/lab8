@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project_name }}</title>
+    <style>
+        h2 { text-align: center; }
+        .group { font-style: italic; color: blue; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        table, th, td { border: 1px solid black; }
+        th { font-weight: bold; background-color: lightgray; }
+        td { text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>{{ project_name }}</h1>
+    <p>student_name: <strong>{{ student_name }}</strong>, group: <span class="group">{{ group }}</span></p>
+
+    <h2>Clients</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>client_id</th>
+                <th>company_name</th>
+                <th>client_type</th>
+                <th>address</th>
+                <th>phone</th>
+                <th>contact_person</th>
+                <th>account_number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.client_id }}</td>
+                <td>{{ client.company_name }}</td>
+                <td>{{ client.client_type }}</td>
+                <td>{{ client.address }}</td>
+                <td>{{ client.phone }}</td>
+                <td>{{ client.contact_person }}</td>
+                <td>{{ client.account_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Products</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>product_id</th>
+                <th>product_name</th>
+                <th>price</th>
+                <th>quantity_in_store</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.product_id }}</td>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity_in_store }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Sales</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>sale_id</th>
+                <th>sale_date</th>
+                <th>client_id</th>
+                <th>product_id</th>
+                <th>quantity_sold</th>
+                <th>discount</th>
+                <th>payment_method</th>
+                <th>delivery_needed</th>
+                <th>delivery_cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ sale.sale_id }}</td>
+                <td>{{ sale.sale_date }}</td>
+                <td>{{ sale.client.client_id }}</td>
+                <td>{{ sale.product.product_id }}</td>
+                <td>{{ sale.quantity_sold }}</td>
+                <td>{{ sale.discount }}</td>
+                <td>{{ sale.payment_method }}</td>
+                <td>{{ sale.delivery_needed }}</td>
+                <td>{{ sale.delivery_cost }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
